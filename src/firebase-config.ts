@@ -1,6 +1,6 @@
 // src/firebase.ts
 import { initializeApp } from 'firebase/app';
-import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 // Use environment variables for Firebase configuration.  populate .env.local file with your own Firebase configuration
 // Students will need to use their own Firebase configuration
@@ -24,13 +24,5 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firestore
 export const db = getFirestore(app);
-
-// Connect to emulators if in development mode
-// This follows the approach described in the Northwestern CS 394 guide
-if (import.meta.env.DEV) {
-  // Connect to Firestore emulator
-  connectFirestoreEmulator(db, 'localhost', 8080);
-  console.warn('🔥 Using Firestore emulator. Is it running? (firebase emulators:start)');
-}
 
 export default app;
